@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Resume Builder</title>
+	<style>
+	 {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+#cv-form {
+    background-color: yellow;
+
+    /* display: none; */
+}
+
+#cv-template {
+    display: none;
+}
+
+.myimg {
+    border-radius: 50%;
+    width: 200px;
+    height: 200px;
+
+}
+
+.background {
+    background-color: yellow;
+}
+
+.left-template {
+    background-color: rgb(108, 141, 249);
+    color: white;
+}
+
+h3 {
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+
+a {
+    color: white;
+    text-decoration: none;
+}
+
+h1 .nameT {
+    text-transform: capitalize;
+	text-align:center;
+}
+
+.card-header {
+    color: rgb(61, 61, 61);
+    padding: 6px !important;
+
+}
+	</style>
+</head>
+<body>
+   
+    <div id="cv-form">
+    <div class="header text-center bg-dark text-light py-2">
+        <h2 size="8" align="center">Resume Builder</h2>
+        <p align="center" class="text-warning">By MAHVISH ISHAQ</p>
+    </div>
+
+    <div class="container mt-3">
+        <div class="row">
+        <!-- colume 1 -->
+
+        <div class="col-md-6 mt-2">
+            <h3>Personal Details</h3>
+
+            <div class="from-group mt-4">
+              <label for="">Select your photo *</label>
+            <input id="imgField" type="file" class="form-control" />
+            </div>
+
+            <div class="form-group mt-3">
+                <label for="namefield"> Your Name</label>
+                <input
+                type="text"
+                id="namefield"
+                class="form-control"
+                placeholder="Enter your name"
+            />
+            </div>
+            <div class="form-group mt-2">
+                <label for="contactfield"> Your Contact No.</label>
+                <input
+                type="number"
+                id="contactfield"
+                class="form-control"
+                placeholder="Enter your Contact name"
+            />
+            </div>
+
+            <div class="form-group mt-3">
+                <label for="emailfield"> Your Email Id</label>
+                <input
+                type="email"
+                id="emailfield"
+                class="form-control"
+                placeholder="Enter your email id "
+            />
+            </div>
+
+            <div class="form-group mt-3">
+                <label for="addressfield">Your Address</label>
+                <textarea
+                rows="4"
+                class="form-control"
+                placeholder="Enter your Address"
+                id="addressfield"
+            ></textarea>
+            </div>
+
+            <h3 class="text-warning mt-3">Social Link</h3>
+
+            <div class="form-group mt-2">
+                <label for="githubfield">Github Link</label>
+                <input
+                type="text"
+                id="githubfield"
+                class="form-control"
+                placeholder="Enter your Github Profile link"
+            />
+            </div>
+            <div class="form-group mt-3">
+                <label for="linkedinfield"> LinkedIn Link</label>
+                <input
+                type="text"
+                id="linkedinfield"
+                class="form-control"
+                placeholder="Enter your Linkedin Profile link"
+            />
+            </div>
+        
+
+            <div class="form-group mt-3">
+                <label for="name"> Other Link</label>
+                <input
+                type="text"
+                id="websitefield"
+                class="form-control"
+                placeholder="Enter other link"
+            />
+            </div>
+        </div>
+
+        <!-- column 2 -->
+        <div class="col-md-6 mt-2">
+            <h3>Professional Details</h3>
+
+            <div class="form-group mt-4">
+                <label for="objfield">Objective</label>
+                <textarea
+                rows="4"
+                class="form-control"
+                placeholder="Enter  Objective "
+                id="objfield"
+                ></textarea>
+            </div>
+
+            <div class="form-group mt-2">
+                <label for="skillfield">Skills</label>
+                <textarea
+                rows="2"
+                class="form-control"
+                placeholder="Enter your Skill set"
+                id="skillfield"
+            ></textarea>
+            </div>
+
+            <div class="form-group mt-3" id="we">
+                <label for="">Work Experience</label>
+                <textarea
+                rows="3"
+                id="expfield"
+                class="form-control wefield"
+                placeholder="Enter your Work Experience"
+            ></textarea>
+
+            <!-- add new textarea by js -->
+            <div class="container text-center mt-2" id="weAddButton">
+                <button onclick="addNewExp()" class="btn btn-warning btn-sm">
+                Add
+                </button>
+            </div>
+            </div>
+
+            <div class="form-group mt-3" id="edu">
+                <label for="">Education</label>
+                <textarea
+                rows="3"
+                id="edufields"
+                class="form-control edufield"
+                placeholder="Enter your Education"
+            ></textarea>
+
+            <div class="container text-center mt-2" id="EAddButton">
+                <button onclick="addNewEdu()" class="btn btn-warning btn-sm">
+                Add
+                </button>
+            </div>
+            </div>
+        </div>
+        </div>
+		<div class="container text-center mt-4">
+            <button onclick="printResume()" class="btn  btn-danger">
+            Print Resume
+            </button>
+        </div>
+
+        
+    </div>
+    </div>
+
+    <!--Resume template-->
+
+    <div class="container-fluid" id="cv-template">
+    <div class="row">
+        <div class="col-md-4 text-center py-5 left-template">
+        <!-- first section -->
+
+        
+        <div class="container">
+            <h1 id="nameT1"></h1>
+            <hr />
+            <p id="noT"></p>
+            <p id="addressT"></p>
+            <p id="emailT"></p>
+        </div>
+        <hr />
+
+        <p>
+            <a id="githubT" href="#"></a>
+        </p>
+        <p>
+            <a id="linkedinT" href="#"></a>
+        </p>
+        <p>
+            <a id="twitterT" href="#"></a>
+        </p>
+
+        <p>
+            <a id="websiteT" href="#"></a>
+        </p>
+        </div>
+
+        <div class="col-md-8 py-4">
+        <!-- second-section -->
+        <!-- <h1 id="nameT2" class="text-center" style="font-weight:980">
+            Rishika Vishnoi
+        </h1>
+    -->
+        <!-- objective  -->
+        <div class="card mt-4">
+            <div class="card-header background">
+            <h3>Objective</h3>
+            </div>
+            <div class="card-body">
+                <p id="objT"></p>
+            </div>
+        </div>
+
+        <!-- skill set -->
+        <div class="card mt-4">
+            <div class="card-header background">
+                <h3>Skills</h3>
+            </div>
+            <div class="card-body">
+                <p id="skillT"></p>
+            </div>
+        </div>
+
+        <!-- work experience -->
+
+        <div class="card mt-4">
+            <div class="card-header background">
+            <h3>Work Experience</h3>
+            </div>
+            <div class="card-body">
+            <ul id="weT">
+                <li></li>
+                <li></li>
+                <li></li>
+            </ul>
+            </div>
+        </div>
+
+        <!-- Education -->
+
+        <div class="card mt-4">
+            <div class="card-header background">
+            <h3>Eduacation</h3>
+            </div>
+            <div class="card-body">
+                <ul id="eduT">
+                <li></li>
+                <li></li>
+                <li></li>
+            </ul>
+            </div>
+        </div>
+
+        <div class="container text-center mt-4">
+            <button onclick="printResume()" class="btn  btn-danger">
+            Print Resume
+            </button>
+        </div>
+        </div>
+    </div>
+    </div>
+
+    <script>
+	function addNewExp() {
+    let newnode = document.createElement("textarea");
+    newnode.classList.add("form-control");
+    newnode.style.marginTop = "20px";
+    newnode.classList.add("wefield");
+    newnode.setAttribute("rows", 3);
+    newnode.setAttribute("placeholder", "Enter your Work Experience");
+
+    let weAdd = document.getElementById("we");
+    let weAddButton = document.getElementById("weAddButton");
+
+    weAdd.insertBefore(newnode, weAddButton);
+}
+
+function addNewEdu() {
+    let newnode = document.createElement("textarea");
+    newnode.classList.add("form-control");
+    newnode.style.marginTop = "20px";
+    newnode.classList.add("edufield");
+    newnode.setAttribute("rows", 3);
+    newnode.setAttribute("placeholder", "Enter your Education");
+
+    let weAdd = document.getElementById("edu");
+    let weAddButton = document.getElementById("EAddButton");
+
+    weAdd.insertBefore(newnode, weAddButton);
+}
+
+  //generating cv
+
+function generateResume() {
+    let file = document.getElementById("imgField").files[0];
+    console.log(file);
+
+    let reader = new FileReader();
+
+    reader.readAsDataURL(file);
+
+    //set image
+
+    reader.onloadend = function () {
+    document.getElementById("my-img").src = reader.result;
+    };
+
+    let nameField = document.getElementById("namefield").value;
+
+    document.getElementById("nameT1").innerHTML = nameField;
+    // document.getElementById("nameT2").innerHTML = nameField;
+
+    let contactNo = document.getElementById("contactfield").value;
+    document.getElementById("noT").innerHTML = contactNo;
+
+    let email = document.getElementById("emailfield").value;
+    document.getElementById("emailT").innerHTML = email;
+
+    let address = document.getElementById("addressfield").value;
+    document.getElementById("addressT").innerHTML = address;
+
+    let Github = document.getElementById("githubfield").value;
+    document.getElementById("githubT").innerHTML = Github;
+
+    let Linkedin = document.getElementById("linkedinfield").value;
+    document.getElementById("linkedinT").innerHTML = Linkedin;
+
+  
+
+    let Website = document.getElementById("websitefield").value;
+    document.getElementById("websiteT").innerHTML = Website;
+
+    let Skill = document.getElementById("skillfield").value;
+    document.getElementById("skillT").innerHTML = Skill;
+
+    let obj = document.getElementById("objfield").value;
+    document.getElementById("objT").innerHTML = obj;
+
+    // experience
+    let work = document.getElementsByClassName("wefield");
+
+    let str = "";
+    for (let e of work) {
+    str = str + `<li> ${e.value}</li>`;
+    }
+    document.getElementById("weT").innerHTML = str;
+
+    //education
+    let Education = document.getElementsByClassName("edufield");
+
+    let str2 = "";
+    for (let e of Education) {
+    str2 = str2 + `<li> ${e.value}</li>`;
+    console.log(str2);
+    }
+    document.getElementById("eduT").innerHTML = str2;
+
+    document.getElementById("cv-form").style.display = "none";
+
+    document.getElementById("cv-template").style.display = "block";
+}
+
+  //printing the resume
+
+function printResume() {
+    console.log("clicked");
+    window.print();
+}
+    </script>
+</body>
+</html>
